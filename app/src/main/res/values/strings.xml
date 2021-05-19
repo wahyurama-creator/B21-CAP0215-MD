@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SkinDec</string>
+    <string name="text_onboarding">Semakin mudah untuk mengetahui jenis kulit kamu hanya dengan sekali selfie</string>
+    <string name="mulai">Mulai</string>
+    <string name="selfie_sekarang">Selfie Sekarang</string>
+    <string name="upload_gambar">Upload Gambar</string>
+    <string name="ketentuan_foto">Ketentuan Foto:</string>
+    <string name="text_1">- Posisikan muka dibagian tengah</string>
+    <string name="text_2">- Pastikan gambar tidak blur</string>
+    <string name="text_3">- Ambil gambar di tempat terang</string>
+</resources>
