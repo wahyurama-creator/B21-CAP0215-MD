@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.dev.skindec.databinding.ActivityHomeBinding
@@ -12,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class HomeActivity : AppCompatActivity() {
 
+    private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var binding: ActivityHomeBinding
     private lateinit var filePath: Uri
 
@@ -27,6 +29,14 @@ class HomeActivity : AppCompatActivity() {
         binding.ivImage.setOnClickListener {
             ImagePicker.with(this)
                 .start()
+        }
+
+        binding.btnUpload.setOnClickListener {
+            val name = binding.etName.text.toString()
+            val age = binding.etAge.text.toString()
+            val sex = binding.etGender.text.toString()
+
+            homeViewModel.userRegister(age.toInt(), name, sex)
         }
     }
 
@@ -46,7 +56,7 @@ class HomeActivity : AppCompatActivity() {
             }
             ImagePicker.RESULT_ERROR -> {
                 Snackbar.make(
-                    binding.btnselfie,
+                    binding.btnUpload,
                     ImagePicker.getError(data),
                     Snackbar.LENGTH_SHORT
                 )
@@ -54,7 +64,7 @@ class HomeActivity : AppCompatActivity() {
             }
             else -> {
                 Snackbar.make(
-                    binding.btnselfie,
+                    binding.btnUpload,
                     "Task cancelled",
                     Snackbar.LENGTH_SHORT
                 ).show()
