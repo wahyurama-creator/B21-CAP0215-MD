@@ -54,9 +54,9 @@ class HomeViewModel : ViewModel() {
         })
     }
 
-    fun getUserById(id: Int?) {
+    fun getUserById(id: Int) {
         _isLoading.value = true
-        val client = ApiConfig.apiService().getUser(id!!)
+        val client = ApiConfig.apiService().getUser(id)
         client.enqueue(object : Callback<UserResponse> {
             override fun onResponse(
                 call: Call<UserResponse>,

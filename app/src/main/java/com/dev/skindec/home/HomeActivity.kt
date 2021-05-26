@@ -4,10 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.dev.skindec.ResultActivity
 import com.dev.skindec.databinding.ActivityHomeBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.snackbar.Snackbar
@@ -43,11 +43,9 @@ class HomeActivity : AppCompatActivity() {
             userObject.addProperty("name", name)
             userObject.addProperty("sex", sex)
 
-            homeViewModel.userRegister(userObject)
-            homeViewModel.user.observe(this, {
-                Log.v("userId: ", it.id.toString())
-            })
-            homeViewModel.getUserById(1)
+//            homeViewModel.userRegister(userObject)
+
+            startActivity(Intent(this, ResultActivity::class.java))
         }
     }
 
