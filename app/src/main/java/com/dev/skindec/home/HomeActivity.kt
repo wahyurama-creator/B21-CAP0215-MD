@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.dev.skindec.R
 import com.dev.skindec.ResultActivity
 import com.dev.skindec.core.data.source.remote.network.ApiConfig
 import com.dev.skindec.core.data.source.remote.response.UserResponse
@@ -29,6 +30,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var filePath: Uri
     private var id: Int = 0
+    private var isPicture: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,23 +47,20 @@ class HomeActivity : AppCompatActivity() {
         }
 
         binding.btnUpload.setOnClickListener {
-            binding.progressBar.visibility = View.VISIBLE
-            binding.btnUpload.visibility = View.GONE
+            validateInput()
+        }
 
-            val name = binding.etName.text.toString()
-            val age = binding.etAge.text.toString()
-            val sex = binding.etGender.text.toString()
-
-            val userObject = JsonObject()
-            userObject.addProperty("age", age)
-            userObject.addProperty("name", name)
-            userObject.addProperty("sex", sex)
-
-            userRegister(userObject)
+        binding.ivRemove.setOnClickListener {
+            isPicture = false
+            binding.ivImage.setImageResource(R.drawable.empty_picture)
+            binding.ivRemove.visibility = View.INVISIBLE
         }
     }
 
     private fun userRegister(userObject: JsonObject) {
+        binding.progressBar.visibility = View.VISIBLE
+        binding.btnUpload.visibility = View.GONE
+
         val client = ApiConfig.apiService().register(userObject)
         client.enqueue(object : Callback<UserResponse> {
             override fun onResponse(
@@ -72,12 +71,6 @@ class HomeActivity : AppCompatActivity() {
                     binding.progressBar.visibility =
                         View.INVISIBLE
                     id = response.body()?.id!!
-
-                    Snackbar.make(
-                        binding.btnUpload,
-                        "Upload berhasil",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
 
                     val intent =
                         Intent(
@@ -123,6 +116,42 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
+    private fun validateInput() {
+        when {
+            binding.etName.text.isEmpty() -> {
+                binding.etName.error = "Nama tidak boleh kosong"
+                binding.etName.requestFocus()
+            }
+            binding.etGender.text.isEmpty() -> {
+                binding.etGender.error = "Kolom tidak boleh kosong"
+                binding.etGender.requestFocus()
+            }
+            binding.etAge.text.isEmpty() -> {
+                binding.etAge.error = "Kolom tidak boleh kosong"
+                binding.etAge.requestFocus()
+            }
+            isPicture == false -> {
+                Snackbar.make(
+                    binding.root,
+                    "Ambil gambar terlebih dahulu",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+            else -> {
+                val name = binding.etName.text.toString()
+                val age = binding.etAge.text.toString()
+                val sex = binding.etGender.text.toString()
+
+                val userObject = JsonObject()
+                userObject.addProperty("age", age)
+                userObject.addProperty("name", name)
+                userObject.addProperty("sex", sex)
+
+                userRegister(userObject)
+            }
+        }
+    }
+
     override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
@@ -136,14 +165,15 @@ class HomeActivity : AppCompatActivity() {
                     .load(filePath)
                     .circleCrop()
                     .into(binding.ivImage)
+                isPicture = true
+                binding.ivRemove.visibility = View.VISIBLE
             }
             ImagePicker.RESULT_ERROR -> {
                 Snackbar.make(
                     binding.btnUpload,
                     ImagePicker.getError(data),
                     Snackbar.LENGTH_SHORT
-                )
-                    .show()
+                ).show()
             }
             else -> {
                 Snackbar.make(
