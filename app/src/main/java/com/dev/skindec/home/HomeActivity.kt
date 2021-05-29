@@ -23,8 +23,9 @@ import retrofit2.Response
 class HomeActivity : AppCompatActivity() {
 
     companion object {
-        val TAG = HomeActivity::class.java.simpleName
+        val TAG: String = HomeActivity::class.java.simpleName
         const val EXTRA_ID = "extra_id"
+        const val EXTRA_IMAGE = "extra_image"
     }
 
     private lateinit var binding: ActivityHomeBinding
@@ -78,6 +79,7 @@ class HomeActivity : AppCompatActivity() {
                             ResultActivity::class.java
                         )
                     intent.putExtra(EXTRA_ID, id)
+                    intent.putExtra(EXTRA_IMAGE, filePath)
                     startActivity(intent)
                     finish()
                 } else {

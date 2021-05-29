@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.dev.skindec.core.data.source.remote.network.ApiConfig
 import com.dev.skindec.core.data.source.remote.response.UserResponse
 import com.dev.skindec.databinding.ActivityResultBinding
 import com.dev.skindec.home.HomeActivity
 import com.dev.skindec.home.HomeActivity.Companion.EXTRA_ID
+import com.dev.skindec.home.HomeActivity.Companion.EXTRA_IMAGE
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,6 +26,12 @@ class ResultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val id = intent.getIntExtra(EXTRA_ID, 0)
+        val image = intent.getStringExtra(EXTRA_IMAGE)
+
+        Glide.with(this)
+            .load(image)
+            .circleCrop()
+            .into(binding.ivImageResult)
 
         getUser(id)
     }
