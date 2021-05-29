@@ -1,6 +1,7 @@
 package com.dev.skindec.core.data.source.remote.network
 
 import com.dev.skindec.core.data.source.remote.response.UserResponse
+import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -14,11 +15,9 @@ interface ApiService {
         @Path("user_id") userId: Int
     ): Call<UserResponse>
 
-    @FormUrlEncoded
+    @Headers("Content-Type: application/json")
     @POST("users")
     fun register(
-        @Field("age") age: Int,
-        @Field("name") name: String,
-        @Field("sex") sex: String
+        @Body requestBody: JsonObject
     ): Call<UserResponse>
 }
