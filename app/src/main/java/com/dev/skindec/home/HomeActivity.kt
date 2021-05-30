@@ -32,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var filePath: Uri
     private var id: Int = 0
     private var isPicture: Boolean = false
+    private lateinit var image: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +59,40 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (resultCode) {
+            Activity.RESULT_OK -> {
+                filePath = data?.data!!
+                Glide.with(this)
+                    .load(filePath)
+                    .circleCrop()
+                    .into(binding.ivImage)
+                isPicture = true
+                binding.ivRemove.visibility = View.VISIBLE
+                image = filePath.toString()
+            }
+            ImagePicker.RESULT_ERROR -> {
+                Snackbar.make(
+                    binding.btnUpload,
+                    ImagePicker.getError(data),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+            else -> {
+                Snackbar.make(
+                    binding.btnUpload,
+                    "Task cancelled",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
     private fun userRegister(userObject: JsonObject) {
         binding.progressBar.visibility = View.VISIBLE
         binding.btnUpload.visibility = View.GONE
@@ -79,7 +114,7 @@ class HomeActivity : AppCompatActivity() {
                             ResultActivity::class.java
                         )
                     intent.putExtra(EXTRA_ID, id)
-                    intent.putExtra(EXTRA_IMAGE, filePath)
+                    intent.putExtra(EXTRA_IMAGE, image)
                     startActivity(intent)
                     finish()
                 } else {
@@ -124,10 +159,6 @@ class HomeActivity : AppCompatActivity() {
                 binding.etName.error = "Nama tidak boleh kosong"
                 binding.etName.requestFocus()
             }
-            binding.etGender.text.isEmpty() -> {
-                binding.etGender.error = "Kolom tidak boleh kosong"
-                binding.etGender.requestFocus()
-            }
             binding.etAge.text.isEmpty() -> {
                 binding.etAge.error = "Kolom tidak boleh kosong"
                 binding.etAge.requestFocus()
@@ -142,7 +173,16 @@ class HomeActivity : AppCompatActivity() {
             else -> {
                 val name = binding.etName.text.toString()
                 val age = binding.etAge.text.toString()
-                val sex = binding.etGender.text.toString()
+                lateinit var sex: String
+
+                val selectedBtn =
+                    binding.radioGroup.checkedRadioButtonId
+
+                sex = if (selectedBtn == binding.rbLaki.id) {
+                    binding.rbLaki.text.toString()
+                } else {
+                    binding.rbPerempuan.text.toString()
+                }
 
                 val userObject = JsonObject()
                 userObject.addProperty("age", age)
@@ -150,39 +190,6 @@ class HomeActivity : AppCompatActivity() {
                 userObject.addProperty("sex", sex)
 
                 userRegister(userObject)
-            }
-        }
-    }
-
-    override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
-    ) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (resultCode) {
-            Activity.RESULT_OK -> {
-                filePath = data?.data!!
-                Glide.with(this)
-                    .load(filePath)
-                    .circleCrop()
-                    .into(binding.ivImage)
-                isPicture = true
-                binding.ivRemove.visibility = View.VISIBLE
-            }
-            ImagePicker.RESULT_ERROR -> {
-                Snackbar.make(
-                    binding.btnUpload,
-                    ImagePicker.getError(data),
-                    Snackbar.LENGTH_SHORT
-                ).show()
-            }
-            else -> {
-                Snackbar.make(
-                    binding.btnUpload,
-                    "Task cancelled",
-                    Snackbar.LENGTH_SHORT
-                ).show()
             }
         }
     }

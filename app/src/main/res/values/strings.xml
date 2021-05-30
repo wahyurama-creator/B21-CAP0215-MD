@@ -13,7 +13,7 @@
     <string name="jenis_kelamin">Jenis Kelamin</string>
     <string name="perempuan_laki">Perempuan / Laki</string>
     <string name="umur">Umur</string>
-    <string name="_18">18</string>
+    <string name="umur_kamu">Umur kamu</string>
     <string name="user_name">Hi, %s</string>
     <string name="tipe_kulitmu">Tipe Kulitmu</string>
     <string name="content_tipe_kulit">Kulit kamu tipenya, %s dan bikin %s nih.</string>
@@ -23,4 +23,6 @@
         Menjaga pola makan dari makanan berminyak<br />
         Kurangin stress
     </string>
+    <string name="laki_laki">Laki - Laki</string>
+    <string name="perempuan">Perempuan</string>
 </resources>
