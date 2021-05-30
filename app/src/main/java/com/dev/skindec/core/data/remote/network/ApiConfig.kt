@@ -1,4 +1,4 @@
-package com.dev.skindec.core.data.source.remote.network
+package com.dev.skindec.core.data.remote.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

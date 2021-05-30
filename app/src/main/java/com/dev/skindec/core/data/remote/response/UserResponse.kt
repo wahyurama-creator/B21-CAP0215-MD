@@ -1,4 +1,4 @@
-package com.dev.skindec.core.data.source.remote.response
+package com.dev.skindec.core.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
