@@ -159,10 +159,6 @@ class HomeActivity : AppCompatActivity() {
                 binding.etName.error = "Nama tidak boleh kosong"
                 binding.etName.requestFocus()
             }
-            binding.etGender.text.isEmpty() -> {
-                binding.etGender.error = "Kolom tidak boleh kosong"
-                binding.etGender.requestFocus()
-            }
             binding.etAge.text.isEmpty() -> {
                 binding.etAge.error = "Kolom tidak boleh kosong"
                 binding.etAge.requestFocus()
@@ -177,7 +173,16 @@ class HomeActivity : AppCompatActivity() {
             else -> {
                 val name = binding.etName.text.toString()
                 val age = binding.etAge.text.toString()
-                val sex = binding.etGender.text.toString()
+                lateinit var sex: String
+
+                val selectedBtn =
+                    binding.radioGroup.checkedRadioButtonId
+
+                sex = if (selectedBtn == binding.rbLaki.id) {
+                    binding.rbLaki.text.toString()
+                } else {
+                    binding.rbPerempuan.text.toString()
+                }
 
                 val userObject = JsonObject()
                 userObject.addProperty("age", age)

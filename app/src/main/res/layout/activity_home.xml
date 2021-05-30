@@ -38,8 +38,8 @@
 
         <ImageView
             android:id="@+id/iv_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_marginTop="50dp"
             android:contentDescription="@string/app_name"
             app:layout_constraintEnd_toEndOf="parent"
@@ -125,13 +125,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_age" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="206dp" />
-
         <TextView
             android:id="@+id/textView8"
             style="@style/TextView.Poppins"
@@ -175,53 +168,73 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
-        <EditText
-            android:id="@+id/et_gender"
-            style="@style/TextView.PoppinsLight"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/bg_form_outline"
-            android:hint="@string/perempuan_laki"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:padding="12dp"
-            android:textColorHint="@color/color_text_secondary"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
         <TextView
             android:id="@+id/textView10"
             style="@style/TextView.Poppins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="@string/umur"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/et_name" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
         <EditText
             android:id="@+id/et_age"
             style="@style/TextView.PoppinsLight"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
             android:background="@drawable/bg_form_outline"
-            android:hint="@string/_18"
+            android:hint="@string/umur_kamu"
             android:importantForAutofill="no"
             android:inputType="number"
             android:padding="12dp"
             android:textColorHint="@color/color_text_secondary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView9">
+
+            <RadioButton
+                android:id="@+id/rb_laki"
+                style="@style/TextView.Poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_selector"
+                android:button="@drawable/radio_unselected"
+                android:checked="true"
+                android:gravity="center"
+                android:text="@string/laki_laki"
+                android:textColor="@drawable/radio_text_selector" />
+
+            <RadioButton
+                android:id="@+id/rb_perempuan"
+                style="@style/TextView.Poppins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_selector"
+                android:button="@drawable/radio_unselected"
+                android:gravity="center"
+                android:text="@string/perempuan"
+                android:textColor="@drawable/radio_text_selector" />
+        </RadioGroup>
 
         <ProgressBar
             android:id="@+id/progressBar"
