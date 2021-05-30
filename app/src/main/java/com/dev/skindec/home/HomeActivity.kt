@@ -9,10 +9,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.dev.skindec.R
-import com.dev.skindec.ResultActivity
-import com.dev.skindec.core.data.source.remote.network.ApiConfig
-import com.dev.skindec.core.data.source.remote.response.UserResponse
+import com.dev.skindec.core.data.remote.network.ApiConfig
+import com.dev.skindec.core.data.remote.response.UserResponse
 import com.dev.skindec.databinding.ActivityHomeBinding
+import com.dev.skindec.result.ResultActivity
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.JsonObject

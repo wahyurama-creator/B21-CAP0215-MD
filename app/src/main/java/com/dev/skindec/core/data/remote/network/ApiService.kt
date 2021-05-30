@@ -1,6 +1,6 @@
-package com.dev.skindec.core.data.source.remote.network
+package com.dev.skindec.core.data.remote.network
 
-import com.dev.skindec.core.data.source.remote.response.UserResponse
+import com.dev.skindec.core.data.remote.response.UserResponse
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
