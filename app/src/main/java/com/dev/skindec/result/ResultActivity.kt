@@ -14,6 +14,7 @@ import com.dev.skindec.databinding.ActivityResultBinding
 import com.dev.skindec.home.HomeActivity
 import com.dev.skindec.home.HomeActivity.Companion.EXTRA_ID
 import com.dev.skindec.home.HomeActivity.Companion.EXTRA_IMAGE
+import com.dev.skindec.home.HomeActivity.Companion.EXTRA_PREDICTION
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,6 +24,7 @@ class ResultActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityResultBinding
     private lateinit var productAdapter: ProductAdapter
+    private var prediction: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,7 @@ class ResultActivity : AppCompatActivity() {
 
         val id = intent.getIntExtra(EXTRA_ID, 0)
         val image = intent.getStringExtra(EXTRA_IMAGE)
+        prediction = intent.getStringExtra(EXTRA_PREDICTION)
 
         productAdapter = ProductAdapter()
 
@@ -48,7 +51,7 @@ class ResultActivity : AppCompatActivity() {
     private fun getUser(id: Int) {
         binding.progressBar.visibility = View.VISIBLE
 
-        val client = ApiConfig.apiService().getUser(id)
+        val client = ApiConfig.userService().getUser(id)
         client.enqueue(object : Callback<UserResponse> {
             override fun onResponse(
                 call: Call<UserResponse>,
@@ -58,7 +61,6 @@ class ResultActivity : AppCompatActivity() {
                     binding.progressBar.visibility = View.INVISIBLE
 
                     val name = response.body()?.name
-                    val skinType = response.body()?.skinType
 
                     with(binding) {
                         tvNameResult.text =
@@ -68,7 +70,7 @@ class ResultActivity : AppCompatActivity() {
                             )
                         tvSkinResult.text = resources.getString(
                             R.string.content_tipe_kulit,
-                            skinType,
+                            prediction,
                             "silau"
                         )
                     }

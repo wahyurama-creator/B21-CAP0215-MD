@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.dev.skindec.R
 import com.dev.skindec.core.data.remote.network.ApiConfig
+import com.dev.skindec.core.data.remote.response.UploadResponse
 import com.dev.skindec.core.data.remote.response.UserResponse
 import com.dev.skindec.databinding.ActivityHomeBinding
 import com.dev.skindec.result.ResultActivity
@@ -30,11 +31,13 @@ class HomeActivity : AppCompatActivity() {
         val TAG: String = HomeActivity::class.java.simpleName
         const val EXTRA_ID = "extra_id"
         const val EXTRA_IMAGE = "extra_image"
+        const val EXTRA_PREDICTION = "extra_prediction"
     }
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var filePath: Uri
     private var id: Int = 0
+    private var prediction: String? = null
     private var isPicture: Boolean = false
     private lateinit var image: String
 
@@ -49,6 +52,7 @@ class HomeActivity : AppCompatActivity() {
 
         binding.ivImage.setOnClickListener {
             ImagePicker.with(this)
+                .cameraOnly()
                 .start()
         }
 
@@ -101,26 +105,16 @@ class HomeActivity : AppCompatActivity() {
         binding.progressBar.visibility = View.VISIBLE
         binding.btnUpload.visibility = View.GONE
 
-        val client = ApiConfig.apiService().register(userObject)
+        val client = ApiConfig.userService().register(userObject)
         client.enqueue(object : Callback<UserResponse> {
             override fun onResponse(
                 call: Call<UserResponse>,
                 response: Response<UserResponse>
             ) {
                 if (response.isSuccessful) {
-                    binding.progressBar.visibility =
-                        View.INVISIBLE
                     id = response.body()?.id!!
 
-                    val intent =
-                        Intent(
-                            this@HomeActivity,
-                            ResultActivity::class.java
-                        )
-                    intent.putExtra(EXTRA_ID, id)
-                    intent.putExtra(EXTRA_IMAGE, image)
-                    startActivity(intent)
-                    finish()
+                    uploadImage(id)
                 } else {
                     binding.progressBar.visibility =
                         View.INVISIBLE
@@ -157,9 +151,10 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
-    private fun uploadImage() {
+    private fun uploadImage(userId: Int) {
         binding.progressBar.visibility = View.VISIBLE
         binding.btnUpload.visibility = View.GONE
+
 
         val imageFile = File(filePath.path!!)
         val imageBody = RequestBody.create(
@@ -172,23 +167,37 @@ class HomeActivity : AppCompatActivity() {
         )
 
         val client = ApiConfig.apiService().uploadImage(imageParams)
-        client.enqueue(object : Callback<Any> {
+        client.enqueue(object : Callback<UploadResponse> {
             override fun onResponse(
-                call: Call<Any>,
-                response: Response<Any>
+                call: Call<UploadResponse>,
+                response: Response<UploadResponse>
             ) {
                 if (response.isSuccessful) {
                     binding.progressBar.visibility =
                         View.INVISIBLE
 
-                    Log.d(
-                        TAG,
-                        "success: ${response.message()}"
-                    )
+                    prediction = response.body()?.prediction
+
+                    val intent =
+                        Intent(
+                            this@HomeActivity,
+                            ResultActivity::class.java
+                        )
+                    intent.putExtra(EXTRA_ID, userId)
+                    intent.putExtra(EXTRA_IMAGE, image)
+                    intent.putExtra(EXTRA_PREDICTION, prediction)
+                    startActivity(intent)
+                    finish()
                 } else {
                     binding.progressBar.visibility =
                         View.INVISIBLE
+                    binding.btnUpload.visibility = View.VISIBLE
 
+                    Snackbar.make(
+                        binding.btnUpload,
+                        "Upload gagal: " + response.message(),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                     Log.e(
                         TAG,
                         "onFailure: ${response.message()}"
@@ -196,7 +205,18 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<Any>, t: Throwable) {
+            override fun onFailure(
+                call: Call<UploadResponse>,
+                t: Throwable
+            ) {
+                binding.progressBar.visibility =
+                    View.INVISIBLE
+                binding.btnUpload.visibility = View.VISIBLE
+                Snackbar.make(
+                    binding.btnUpload,
+                    "Upload gagal: " + t.message.toString(),
+                    Snackbar.LENGTH_SHORT
+                ).show()
                 Log.e(
                     TAG,
                     "onFailure: ${t.message.toString()}"
@@ -243,8 +263,8 @@ class HomeActivity : AppCompatActivity() {
                 userObject.addProperty("sex", sex)
 
                 userRegister(userObject)
-                uploadImage()
             }
         }
     }
+
 }

@@ -15,12 +15,31 @@ class ApiConfig {
                 )
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
-                .connectTimeout(120, TimeUnit.SECONDS)
-                .readTimeout(120, TimeUnit.SECONDS)
-                .writeTimeout(120, TimeUnit.SECONDS)
+                .connectTimeout(240, TimeUnit.SECONDS)
+                .readTimeout(240, TimeUnit.SECONDS)
+                .writeTimeout(240, TimeUnit.SECONDS)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://premium-highway-312515.et.r.appspot.com/")
+                .baseUrl("http://34.101.206.134:5000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+            return retrofit.create(ApiService::class.java)
+        }
+
+        fun userService(): ApiService {
+            val loggingInterceptor =
+                HttpLoggingInterceptor().setLevel(
+                    HttpLoggingInterceptor.Level.BODY
+                )
+            val client = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .connectTimeout(240, TimeUnit.SECONDS)
+                .readTimeout(240, TimeUnit.SECONDS)
+                .writeTimeout(240, TimeUnit.SECONDS)
+                .build()
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://premium-highway-312515.et.r.appspot.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

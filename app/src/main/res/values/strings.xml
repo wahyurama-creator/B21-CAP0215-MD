@@ -19,9 +19,9 @@
     <string name="content_tipe_kulit">Kulit kamu tipenya, %s dan bikin %s nih.</string>
     <string name="saran_dari_kami">Saran dari Kami</string>
     <string name="saran">
-        Cuci muka secara teratur<br />
-        Menjaga pola makan dari makanan berminyak<br />
-        Kurangin stress
+        Cuci muka secara teratur \n
+        Menjaga pola makan dari makanan berminyak \n
+        Kurangin stress \n
     </string>
     <string name="laki_laki">Laki - Laki</string>
     <string name="perempuan">Perempuan</string>
