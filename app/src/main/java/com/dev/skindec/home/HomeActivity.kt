@@ -16,9 +16,13 @@ import com.dev.skindec.result.ResultActivity
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.JsonObject
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 class HomeActivity : AppCompatActivity() {
 
@@ -153,6 +157,55 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
+    private fun uploadImage() {
+        binding.progressBar.visibility = View.VISIBLE
+        binding.btnUpload.visibility = View.GONE
+
+        val imageFile = File(filePath.path!!)
+        val imageBody = RequestBody.create(
+            MediaType.parse("multipart/form-data"), imageFile
+        )
+        val imageParams = MultipartBody.Part.createFormData(
+            "file",
+            imageFile.name,
+            imageBody
+        )
+
+        val client = ApiConfig.apiService().uploadImage(imageParams)
+        client.enqueue(object : Callback<Any> {
+            override fun onResponse(
+                call: Call<Any>,
+                response: Response<Any>
+            ) {
+                if (response.isSuccessful) {
+                    binding.progressBar.visibility =
+                        View.INVISIBLE
+
+                    Log.d(
+                        TAG,
+                        "success: ${response.message()}"
+                    )
+                } else {
+                    binding.progressBar.visibility =
+                        View.INVISIBLE
+
+                    Log.e(
+                        TAG,
+                        "onFailure: ${response.message()}"
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+                Log.e(
+                    TAG,
+                    "onFailure: ${t.message.toString()}"
+                )
+            }
+
+        })
+    }
+
     private fun validateInput() {
         when {
             binding.etName.text.isEmpty() -> {
@@ -190,6 +243,7 @@ class HomeActivity : AppCompatActivity() {
                 userObject.addProperty("sex", sex)
 
                 userRegister(userObject)
+                uploadImage()
             }
         }
     }
