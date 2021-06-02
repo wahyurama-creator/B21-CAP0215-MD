@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.dev.skindec.R
@@ -122,7 +121,7 @@ class HomeActivity : AppCompatActivity() {
                     binding.btnUpload.visibility = View.VISIBLE
                     Snackbar.make(
                         binding.btnUpload,
-                        "Upload gagal: " + response.message(),
+                        "Upload gagal: User Register" + response.message(),
                         Snackbar.LENGTH_SHORT
                     ).show()
                     Log.e(
@@ -141,7 +140,7 @@ class HomeActivity : AppCompatActivity() {
                 binding.btnUpload.visibility = View.VISIBLE
                 Snackbar.make(
                     binding.btnUpload,
-                    "Upload gagal: " + t.localizedMessage,
+                    "Upload gagal: User Register" + t.localizedMessage,
                     Snackbar.LENGTH_SHORT
                 ).show()
                 Log.e(
@@ -187,7 +186,7 @@ class HomeActivity : AppCompatActivity() {
 
                     Snackbar.make(
                         binding.btnUpload,
-                        "Upload gagal: " + response.errorBody(),
+                        "Upload gagal: Upload Image" + response.errorBody(),
                         Snackbar.LENGTH_SHORT
                     ).show()
                     Log.e(
@@ -206,7 +205,7 @@ class HomeActivity : AppCompatActivity() {
                 binding.btnUpload.visibility = View.VISIBLE
                 Snackbar.make(
                     binding.btnUpload,
-                    "Upload gagal: " + t.localizedMessage,
+                    "Upload gagal: Upload Image" + t.localizedMessage,
                     Snackbar.LENGTH_SHORT
                 ).show()
                 Log.e(
@@ -243,9 +242,10 @@ class HomeActivity : AppCompatActivity() {
                 val groupId =
                     binding.radioGroup.checkedRadioButtonId
 
-                if (groupId != -1) {
-                    val radioBtn = findViewById<RadioButton>(groupId)
-                    sex = radioBtn.text.toString()
+                sex = if (groupId == binding.rbLaki.id) {
+                    "L"
+                } else {
+                    "P"
                 }
 
                 val userObject = JsonObject()
