@@ -174,26 +174,26 @@ class ResultActivity : AppCompatActivity() {
         val listProduct = ArrayList<Product>()
         listProduct.add(
             Product(
-                "KLEVERU Sea Buckthorn Cleansing Gel",
-                R.drawable.skin_oily_one,
-                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
-                "Rp75.000"
+                "Sensatia Botanicals Unscented Soapless Facial Cleanser",
+                R.drawable.skin_sensitive_one,
+                "Pembersih tanpa wewangian ini efektif mengangkat kotoran",
+                "Rp130.000"
             )
         )
         listProduct.add(
             Product(
-                "SOMETHINC Niacinamide + Moisture Beet Serum",
-                R.drawable.skin_oily_two,
-                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
-                "Rp115.000"
+                "SKIN1004 Madagascar Centella Asiatica Serum",
+                R.drawable.skin_sensitive_two,
+                "Terbuat dari 100% ekstrak centella asiatica yang aman bagi kulit",
+                "Rp170.000"
             )
         )
         listProduct.add(
             Product(
-                "The Aesthetics Skin X Dion Mulya Moist In Jar",
-                R.drawable.skin_oily_three,
-                "Merupakan pelembab wajah yang mengandung aloe vera",
-                "Rp15.000"
+                "SAFI Dermasafe Day Moisturizer Soothe & Hydrate",
+                R.drawable.skin_sensitive_three,
+                "Krim pagi dengan tekstur gel yang mengandung Asam Hyaluronic",
+                "Rp125.000"
             )
         )
         productAdapter.setProduct(listProduct)
@@ -203,26 +203,26 @@ class ResultActivity : AppCompatActivity() {
         val listProduct = ArrayList<Product>()
         listProduct.add(
             Product(
-                "KLEVERU Sea Buckthorn Cleansing Gel",
-                R.drawable.skin_oily_one,
-                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
-                "Rp75.000"
+                "Cetaphil Gentle Skin Cleanser",
+                R.drawable.skin_dry_one,
+                "Pembersih untuk kulit berminyak, keringg, maupun jerawat",
+                "Rp145.000"
             )
         )
         listProduct.add(
             Product(
-                "SOMETHINC Niacinamide + Moisture Beet Serum",
-                R.drawable.skin_oily_two,
-                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
-                "Rp115.000"
+                "AVOSKIN YOUR SKIN BAE SERIES",
+                R.drawable.skin_normal_two,
+                "Membantu mencerahkan kulit dan menyamarkan bekas jerawat.",
+                "Rp158.000"
             )
         )
         listProduct.add(
             Product(
-                "The Aesthetics Skin X Dion Mulya Moist In Jar",
-                R.drawable.skin_oily_three,
-                "Merupakan pelembab wajah yang mengandung aloe vera",
-                "Rp15.000"
+                "Kiehls Ultra Facial Cream",
+                R.drawable.skin_normal_three,
+                "Merupakan pelembap dengan tekstur lembut yang mampu melembapkan wajah",
+                "Rp299.000"
             )
         )
         productAdapter.setProduct(listProduct)
@@ -232,26 +232,26 @@ class ResultActivity : AppCompatActivity() {
         val listProduct = ArrayList<Product>()
         listProduct.add(
             Product(
-                "KLEVERU Sea Buckthorn Cleansing Gel",
-                R.drawable.skin_oily_one,
-                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
-                "Rp75.000"
+                "Cetaphil Gentle Skin Cleanser",
+                R.drawable.skin_dry_one,
+                "Pembersih untuk kulit berminyak, keringg, maupun jerawat",
+                "Rp145.000"
             )
         )
         listProduct.add(
             Product(
-                "SOMETHINC Niacinamide + Moisture Beet Serum",
-                R.drawable.skin_oily_two,
-                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
+                "SOMETHINC Serum",
+                R.drawable.skin_dry_two,
+                "Menghidrasi kulit agar tampak lebih segar",
                 "Rp115.000"
             )
         )
         listProduct.add(
             Product(
-                "The Aesthetics Skin X Dion Mulya Moist In Jar",
-                R.drawable.skin_oily_three,
-                "Merupakan pelembab wajah yang mengandung aloe vera",
-                "Rp15.000"
+                "Cerave Moisturizing Cream",
+                R.drawable.skin_dry_three,
+                "Efektif untuk menghidrasi dan melindungi kulit",
+                "Rp389.000"
             )
         )
         productAdapter.setProduct(listProduct)
@@ -261,26 +261,26 @@ class ResultActivity : AppCompatActivity() {
         val listProduct = ArrayList<Product>()
         listProduct.add(
             Product(
-                "KLEVERU Sea Buckthorn Cleansing Gel",
-                R.drawable.skin_oily_one,
-                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
-                "Rp75.000"
+                "Sensatia Botanicals Unscented Soapless Facial Cleanser",
+                R.drawable.skin_sensitive_one,
+                "Pembersih tanpa wewangian ini efektif mengangkat kotoran",
+                "Rp130.000"
             )
         )
         listProduct.add(
             Product(
-                "SOMETHINC Niacinamide + Moisture Beet Serum",
-                R.drawable.skin_oily_two,
-                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
-                "Rp115.000"
+                "SKIN1004 Madagascar Centella Asiatica Serum",
+                R.drawable.skin_sensitive_two,
+                "Terbuat dari 100% ekstrak centella asiatica yang aman bagi kulit",
+                "Rp170.000"
             )
         )
         listProduct.add(
             Product(
-                "The Aesthetics Skin X Dion Mulya Moist In Jar",
-                R.drawable.skin_oily_three,
-                "Merupakan pelembab wajah yang mengandung aloe vera",
-                "Rp15.000"
+                "SAFI Dermasafe Day Moisturizer Soothe & Hydrate",
+                R.drawable.skin_sensitive_three,
+                "Krim pagi dengan tekstur gel yang mengandung Asam Hyaluronic",
+                "Rp125.000"
             )
         )
         productAdapter.setProduct(listProduct)
