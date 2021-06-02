@@ -45,7 +45,23 @@ class ResultActivity : AppCompatActivity() {
         getUser(id)
 
         initRecyclerView()
-        setDataOil()
+        when {
+            prediction?.equals("oily", true) == true -> {
+                setDataOil()
+            }
+            prediction?.equals("acne", true) == true -> {
+                setDataAcne()
+            }
+            prediction?.equals("normal", true) == true -> {
+                setDataNormal()
+            }
+            prediction?.equals("dry", true) == true -> {
+                setDataDry()
+            }
+            prediction?.equals("scar", true) == true -> {
+                setDataScar()
+            }
+        }
     }
 
     private fun getUser(id: Int) {
@@ -71,8 +87,13 @@ class ResultActivity : AppCompatActivity() {
                         tvSkinResult.text = resources.getString(
                             R.string.content_tipe_kulit,
                             prediction,
-                            "silau"
                         )
+
+                        contentTvSaranProduk.text =
+                            resources.getString(
+                                R.string.saran_produk,
+                                prediction
+                            )
                     }
                 } else {
                     binding.progressBar.visibility = View.INVISIBLE
@@ -124,25 +145,141 @@ class ResultActivity : AppCompatActivity() {
         val listProduct = ArrayList<Product>()
         listProduct.add(
             Product(
-                "Cetaphil Gentle Skin Cleanser",
-                R.drawable.oil_skin_one,
-                "Pembersih Muka",
-                "Rp15.000"
+                "KLEVERU Sea Buckthorn Cleansing Gel",
+                R.drawable.skin_oily_one,
+                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
+                "Rp75.000"
             )
         )
         listProduct.add(
             Product(
-                "Cetaphil Gentle Skin Cleanser",
-                R.drawable.oil_skin_one,
-                "Pembersih Muka",
-                "Rp15.000"
+                "SOMETHINC Niacinamide + Moisture Beet Serum",
+                R.drawable.skin_oily_two,
+                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
+                "Rp115.000"
             )
         )
         listProduct.add(
             Product(
-                "Cetaphil Gentle Skin Cleanser",
-                R.drawable.oil_skin_one,
-                "Pembersih Muka",
+                "The Aesthetics Skin X Dion Mulya Moist In Jar",
+                R.drawable.skin_oily_three,
+                "Merupakan pelembab wajah yang mengandung aloe vera",
+                "Rp15.000"
+            )
+        )
+        productAdapter.setProduct(listProduct)
+    }
+
+    private fun setDataAcne() {
+        val listProduct = ArrayList<Product>()
+        listProduct.add(
+            Product(
+                "KLEVERU Sea Buckthorn Cleansing Gel",
+                R.drawable.skin_oily_one,
+                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
+                "Rp75.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "SOMETHINC Niacinamide + Moisture Beet Serum",
+                R.drawable.skin_oily_two,
+                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
+                "Rp115.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "The Aesthetics Skin X Dion Mulya Moist In Jar",
+                R.drawable.skin_oily_three,
+                "Merupakan pelembab wajah yang mengandung aloe vera",
+                "Rp15.000"
+            )
+        )
+        productAdapter.setProduct(listProduct)
+    }
+
+    private fun setDataNormal() {
+        val listProduct = ArrayList<Product>()
+        listProduct.add(
+            Product(
+                "KLEVERU Sea Buckthorn Cleansing Gel",
+                R.drawable.skin_oily_one,
+                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
+                "Rp75.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "SOMETHINC Niacinamide + Moisture Beet Serum",
+                R.drawable.skin_oily_two,
+                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
+                "Rp115.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "The Aesthetics Skin X Dion Mulya Moist In Jar",
+                R.drawable.skin_oily_three,
+                "Merupakan pelembab wajah yang mengandung aloe vera",
+                "Rp15.000"
+            )
+        )
+        productAdapter.setProduct(listProduct)
+    }
+
+    private fun setDataDry() {
+        val listProduct = ArrayList<Product>()
+        listProduct.add(
+            Product(
+                "KLEVERU Sea Buckthorn Cleansing Gel",
+                R.drawable.skin_oily_one,
+                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
+                "Rp75.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "SOMETHINC Niacinamide + Moisture Beet Serum",
+                R.drawable.skin_oily_two,
+                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
+                "Rp115.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "The Aesthetics Skin X Dion Mulya Moist In Jar",
+                R.drawable.skin_oily_three,
+                "Merupakan pelembab wajah yang mengandung aloe vera",
+                "Rp15.000"
+            )
+        )
+        productAdapter.setProduct(listProduct)
+    }
+
+    private fun setDataScar() {
+        val listProduct = ArrayList<Product>()
+        listProduct.add(
+            Product(
+                "KLEVERU Sea Buckthorn Cleansing Gel",
+                R.drawable.skin_oily_one,
+                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
+                "Rp75.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "SOMETHINC Niacinamide + Moisture Beet Serum",
+                R.drawable.skin_oily_two,
+                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
+                "Rp115.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "The Aesthetics Skin X Dion Mulya Moist In Jar",
+                R.drawable.skin_oily_three,
+                "Merupakan pelembab wajah yang mengandung aloe vera",
                 "Rp15.000"
             )
         )

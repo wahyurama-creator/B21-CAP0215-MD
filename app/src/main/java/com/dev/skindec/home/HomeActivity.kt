@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.dev.skindec.R
@@ -140,7 +141,7 @@ class HomeActivity : AppCompatActivity() {
                 binding.btnUpload.visibility = View.VISIBLE
                 Snackbar.make(
                     binding.btnUpload,
-                    "Upload gagal: " + t.message.toString(),
+                    "Upload gagal: " + t.localizedMessage,
                     Snackbar.LENGTH_SHORT
                 ).show()
                 Log.e(
@@ -178,16 +179,7 @@ class HomeActivity : AppCompatActivity() {
 
                     prediction = response.body()?.prediction
 
-                    val intent =
-                        Intent(
-                            this@HomeActivity,
-                            ResultActivity::class.java
-                        )
-                    intent.putExtra(EXTRA_ID, userId)
-                    intent.putExtra(EXTRA_IMAGE, image)
-                    intent.putExtra(EXTRA_PREDICTION, prediction)
-                    startActivity(intent)
-                    finish()
+                    moveActivity(userId)
                 } else {
                     binding.progressBar.visibility =
                         View.INVISIBLE
@@ -195,7 +187,7 @@ class HomeActivity : AppCompatActivity() {
 
                     Snackbar.make(
                         binding.btnUpload,
-                        "Upload gagal: " + response.message(),
+                        "Upload gagal: " + response.errorBody(),
                         Snackbar.LENGTH_SHORT
                     ).show()
                     Log.e(
@@ -214,7 +206,7 @@ class HomeActivity : AppCompatActivity() {
                 binding.btnUpload.visibility = View.VISIBLE
                 Snackbar.make(
                     binding.btnUpload,
-                    "Upload gagal: " + t.message.toString(),
+                    "Upload gagal: " + t.localizedMessage,
                     Snackbar.LENGTH_SHORT
                 ).show()
                 Log.e(
@@ -248,13 +240,12 @@ class HomeActivity : AppCompatActivity() {
                 val age = binding.etAge.text.toString()
                 lateinit var sex: String
 
-                val selectedBtn =
+                val groupId =
                     binding.radioGroup.checkedRadioButtonId
 
-                sex = if (selectedBtn == binding.rbLaki.id) {
-                    binding.rbLaki.text.toString()
-                } else {
-                    binding.rbPerempuan.text.toString()
+                if (groupId != -1) {
+                    val radioBtn = findViewById<RadioButton>(groupId)
+                    sex = radioBtn.text.toString()
                 }
 
                 val userObject = JsonObject()
@@ -267,4 +258,16 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    private fun moveActivity(userId: Int) {
+        val intent =
+            Intent(
+                this@HomeActivity,
+                ResultActivity::class.java
+            )
+        intent.putExtra(EXTRA_ID, userId)
+        intent.putExtra(EXTRA_IMAGE, image)
+        intent.putExtra(EXTRA_PREDICTION, prediction)
+        startActivity(intent)
+        finish()
+    }
 }
