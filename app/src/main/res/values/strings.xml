@@ -2,12 +2,12 @@
     <string name="app_name">SkinDec</string>
     <string name="text_onboarding">Semakin mudah untuk mengetahui jenis kulit kamu hanya dengan sekali selfie</string>
     <string name="mulai">Mulai</string>
-    <string name="upload_data_diri">Upload Data Diri</string>
-    <string name="upload_gambar">Upload Gambar</string>
+    <string name="upload_data_diri">Analisa</string>
+    <string name="upload_gambar">Form Data Diri</string>
     <string name="ketentuan_foto">Ketentuan Foto:</string>
-    <string name="text_1">- Posisikan muka dibagian tengah</string>
+    <string name="text_1">- Posisikan wajah kamu sejajar dengan kamera</string>
     <string name="text_2">- Pastikan gambar tidak blur</string>
-    <string name="text_3">- Ambil gambar di tempat terang</string>
+    <string name="text_3">- Pastikan pencahayaan sesuai</string>
     <string name="nama_kamu">Nama kamu</string>
     <string name="nama">Nama</string>
     <string name="jenis_kelamin">Jenis Kelamin</string>
@@ -16,13 +16,13 @@
     <string name="umur_kamu">Umur kamu</string>
     <string name="user_name">Hi, %s</string>
     <string name="tipe_kulitmu">Tipe Kulitmu</string>
-    <string name="content_tipe_kulit">Kulit kamu tipenya, %s dan bikin %s nih.</string>
+    <string name="content_tipe_kulit">Kulit kamu tipenya, %s.</string>
     <string name="saran_dari_kami">Saran dari Kami</string>
     <string name="saran">
-        Cuci muka secara teratur<br />
-        Menjaga pola makan dari makanan berminyak<br />
-        Kurangin stress
+        - Cuci muka secara teratur\n- Menjaga pola makan dari makanan berminyak\n- Kurangin stress\n
     </string>
     <string name="laki_laki">Laki - Laki</string>
     <string name="perempuan">Perempuan</string>
+    <string name="saran_produk">Karena kulitmu, %s. Aku punya saran produk buatmu nih.</string>
+    <string name="saran_produk_head">Saran Produk</string>
 </resources>

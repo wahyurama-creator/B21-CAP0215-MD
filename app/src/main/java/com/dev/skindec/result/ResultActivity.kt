@@ -14,6 +14,7 @@ import com.dev.skindec.databinding.ActivityResultBinding
 import com.dev.skindec.home.HomeActivity
 import com.dev.skindec.home.HomeActivity.Companion.EXTRA_ID
 import com.dev.skindec.home.HomeActivity.Companion.EXTRA_IMAGE
+import com.dev.skindec.home.HomeActivity.Companion.EXTRA_PREDICTION
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,6 +24,7 @@ class ResultActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityResultBinding
     private lateinit var productAdapter: ProductAdapter
+    private var prediction: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,7 @@ class ResultActivity : AppCompatActivity() {
 
         val id = intent.getIntExtra(EXTRA_ID, 0)
         val image = intent.getStringExtra(EXTRA_IMAGE)
+        prediction = intent.getStringExtra(EXTRA_PREDICTION)
 
         productAdapter = ProductAdapter()
 
@@ -42,13 +45,29 @@ class ResultActivity : AppCompatActivity() {
         getUser(id)
 
         initRecyclerView()
-        setDataOil()
+        when {
+            prediction?.equals("oily", true) == true -> {
+                setDataOil()
+            }
+            prediction?.equals("acne", true) == true -> {
+                setDataAcne()
+            }
+            prediction?.equals("normal", true) == true -> {
+                setDataNormal()
+            }
+            prediction?.equals("dry", true) == true -> {
+                setDataDry()
+            }
+            prediction?.equals("scar", true) == true -> {
+                setDataScar()
+            }
+        }
     }
 
     private fun getUser(id: Int) {
         binding.progressBar.visibility = View.VISIBLE
 
-        val client = ApiConfig.apiService().getUser(id)
+        val client = ApiConfig.userService().getUser(id)
         client.enqueue(object : Callback<UserResponse> {
             override fun onResponse(
                 call: Call<UserResponse>,
@@ -58,7 +77,6 @@ class ResultActivity : AppCompatActivity() {
                     binding.progressBar.visibility = View.INVISIBLE
 
                     val name = response.body()?.name
-                    val skinType = response.body()?.skinType
 
                     with(binding) {
                         tvNameResult.text =
@@ -68,9 +86,14 @@ class ResultActivity : AppCompatActivity() {
                             )
                         tvSkinResult.text = resources.getString(
                             R.string.content_tipe_kulit,
-                            skinType,
-                            "silau"
+                            prediction,
                         )
+
+                        contentTvSaranProduk.text =
+                            resources.getString(
+                                R.string.saran_produk,
+                                prediction
+                            )
                     }
                 } else {
                     binding.progressBar.visibility = View.INVISIBLE
@@ -122,25 +145,141 @@ class ResultActivity : AppCompatActivity() {
         val listProduct = ArrayList<Product>()
         listProduct.add(
             Product(
-                "Cetaphil Gentle Skin Cleanser",
-                R.drawable.oil_skin_one,
-                "Pembersih Muka",
-                "Rp15.000"
+                "KLEVERU Sea Buckthorn Cleansing Gel",
+                R.drawable.skin_oily_one,
+                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
+                "Rp75.000"
             )
         )
         listProduct.add(
             Product(
-                "Cetaphil Gentle Skin Cleanser",
-                R.drawable.oil_skin_one,
-                "Pembersih Muka",
-                "Rp15.000"
+                "SOMETHINC Niacinamide + Moisture Beet Serum",
+                R.drawable.skin_oily_two,
+                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
+                "Rp115.000"
             )
         )
         listProduct.add(
             Product(
-                "Cetaphil Gentle Skin Cleanser",
-                R.drawable.oil_skin_one,
-                "Pembersih Muka",
+                "The Aesthetics Skin X Dion Mulya Moist In Jar",
+                R.drawable.skin_oily_three,
+                "Merupakan pelembab wajah yang mengandung aloe vera",
+                "Rp15.000"
+            )
+        )
+        productAdapter.setProduct(listProduct)
+    }
+
+    private fun setDataAcne() {
+        val listProduct = ArrayList<Product>()
+        listProduct.add(
+            Product(
+                "KLEVERU Sea Buckthorn Cleansing Gel",
+                R.drawable.skin_oily_one,
+                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
+                "Rp75.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "SOMETHINC Niacinamide + Moisture Beet Serum",
+                R.drawable.skin_oily_two,
+                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
+                "Rp115.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "The Aesthetics Skin X Dion Mulya Moist In Jar",
+                R.drawable.skin_oily_three,
+                "Merupakan pelembab wajah yang mengandung aloe vera",
+                "Rp15.000"
+            )
+        )
+        productAdapter.setProduct(listProduct)
+    }
+
+    private fun setDataNormal() {
+        val listProduct = ArrayList<Product>()
+        listProduct.add(
+            Product(
+                "KLEVERU Sea Buckthorn Cleansing Gel",
+                R.drawable.skin_oily_one,
+                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
+                "Rp75.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "SOMETHINC Niacinamide + Moisture Beet Serum",
+                R.drawable.skin_oily_two,
+                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
+                "Rp115.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "The Aesthetics Skin X Dion Mulya Moist In Jar",
+                R.drawable.skin_oily_three,
+                "Merupakan pelembab wajah yang mengandung aloe vera",
+                "Rp15.000"
+            )
+        )
+        productAdapter.setProduct(listProduct)
+    }
+
+    private fun setDataDry() {
+        val listProduct = ArrayList<Product>()
+        listProduct.add(
+            Product(
+                "KLEVERU Sea Buckthorn Cleansing Gel",
+                R.drawable.skin_oily_one,
+                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
+                "Rp75.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "SOMETHINC Niacinamide + Moisture Beet Serum",
+                R.drawable.skin_oily_two,
+                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
+                "Rp115.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "The Aesthetics Skin X Dion Mulya Moist In Jar",
+                R.drawable.skin_oily_three,
+                "Merupakan pelembab wajah yang mengandung aloe vera",
+                "Rp15.000"
+            )
+        )
+        productAdapter.setProduct(listProduct)
+    }
+
+    private fun setDataScar() {
+        val listProduct = ArrayList<Product>()
+        listProduct.add(
+            Product(
+                "KLEVERU Sea Buckthorn Cleansing Gel",
+                R.drawable.skin_oily_one,
+                "Kleveru Sea Buckthorn Cleansing Gel merupakan pembersih wajah yang diformulasikan sesuai pH kulit alami",
+                "Rp75.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "SOMETHINC Niacinamide + Moisture Beet Serum",
+                R.drawable.skin_oily_two,
+                "Melembabkan, mengatasi kemerahan, serta melawan jerawat",
+                "Rp115.000"
+            )
+        )
+        listProduct.add(
+            Product(
+                "The Aesthetics Skin X Dion Mulya Moist In Jar",
+                R.drawable.skin_oily_three,
+                "Merupakan pelembab wajah yang mengandung aloe vera",
                 "Rp15.000"
             )
         )

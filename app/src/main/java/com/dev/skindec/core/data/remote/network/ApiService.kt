@@ -1,5 +1,6 @@
 package com.dev.skindec.core.data.remote.network
 
+import com.dev.skindec.core.data.remote.response.UploadResponse
 import com.dev.skindec.core.data.remote.response.UserResponse
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
@@ -25,6 +26,6 @@ interface ApiService {
     @Multipart
     @POST("upload")
     fun uploadImage(
-        @Part image: MultipartBody.Part
-    ): Call<Any>
+        @Part file: MultipartBody.Part
+    ): Call<UploadResponse>
 }
