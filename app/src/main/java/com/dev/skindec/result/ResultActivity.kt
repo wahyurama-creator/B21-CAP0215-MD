@@ -174,7 +174,7 @@ class ResultActivity : AppCompatActivity() {
         val listProduct = ArrayList<Product>()
         listProduct.add(
             Product(
-                "Sensatia Botanicals Unscented Soapless Facial Cleanser",
+                "Sensatia Botanicals Soapless Facial Cleanser",
                 R.drawable.skin_sensitive_one,
                 "Pembersih tanpa wewangian ini efektif mengangkat kotoran",
                 "Rp130.000"
@@ -261,7 +261,7 @@ class ResultActivity : AppCompatActivity() {
         val listProduct = ArrayList<Product>()
         listProduct.add(
             Product(
-                "Sensatia Botanicals Unscented Soapless Facial Cleanser",
+                "Sensatia Botanicals Soapless Facial Cleanser",
                 R.drawable.skin_sensitive_one,
                 "Pembersih tanpa wewangian ini efektif mengangkat kotoran",
                 "Rp130.000"

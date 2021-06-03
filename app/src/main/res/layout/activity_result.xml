@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     tools:context=".result.ResultActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -122,9 +121,11 @@
             android:clipToPadding="false"
             android:paddingStart="24dp"
             android:paddingEnd="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/content_tv_saran_produk"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/content_tv_saran_produk"
+            app:layout_goneMarginBottom="24dp"
             tools:itemCount="1"
             tools:listitem="@layout/item_product" />
 
