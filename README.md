@@ -83,6 +83,7 @@ We combine technologies including Machine Learning, Cloud Computing, and Mobile 
     We are create design and prototyping with <a href="https://www.figma.com/file/Wk2PXze9Cfi4UJfam2ZsCw/SkinDec?node-id=110%3A124">Figma</a>
 </h6>
 
-|OnBoarding|Home Upload|Result|
-|--|--|--|--|
-|![](assets/OnBoarding.png)|![](assets/Home.png)|![](assets/Result.png)|
+
+| OnBoarding                 | Home Upload          | Result                 |
+|:---------------------------:|:---------------------:|:-----------------------:|
+| ![](assets/OnBoarding.png) | ![](assets/Home.png) | ![](assets/Result.png) |
