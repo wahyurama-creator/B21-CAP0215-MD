@@ -2,9 +2,12 @@
     SkinDec  
 </h1>
 
+[![wahyurama-creator](https://circleci.com/gh/wahyurama-creator/B21-CAP0215-MD.svg?style=svg)](https://circleci.com/gh/wahyurama-creator/B21-CAP0215-MD)
+
 <h5 align="center">
     Mobile Development B21-CAP0215 Capstone Project | Healthcare
 </h5>
+
 
 <p align="center">
   <a href="http://developer.android.com/index.html"><img alt="Platform" src="https://img.shields.io/badge/platform-Android-green.svg"></a>
